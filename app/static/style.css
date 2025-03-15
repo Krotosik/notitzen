@@ -1,0 +1,313 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+/* Resetowanie marginesów i paddingu */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styl dla całej strony */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(
+    135deg,
+    #fdf6e3,
+    #f5deb3
+  ); /* Delikatny żółty i beżowy */
+  color: #333;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Nagłówek */
+h1 {
+  font-size: 2.5rem;
+  color: #5a4a42; /* Stonowany brąz */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Formularz dodawania notatek */
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 2px solid #d4a373;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+  resize: none;
+  word-wrap: break-word;
+}
+
+textarea:focus {
+  border-color: #c68a5c;
+  box-shadow: 0 0 8px rgba(198, 138, 92, 0.3);
+}
+
+/* Styl dla przycisku */
+button {
+  background: linear-gradient(135deg, #d4a373, #e7b983);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #c68a5c, #d9a76e);
+  transform: scale(1.05);
+}
+
+/* Kontener na listy */
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 20px;
+  align-items: flex-start; /* Dopasowanie wysokości kolumn */
+}
+
+/* Styl dla kolumn */
+.column {
+  width: 50%; /* Stała szerokość */
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.column h2 {
+  text-align: center;
+  color: #a47c5b;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.note-list {
+  list-style: none;
+  padding: 0;
+  overflow-y: 90%;
+  max-height: none;
+}
+
+.note-item {
+  background: linear-gradient(135deg, #f7e5c7, #e7c19e);
+  color: #333;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  transition: transform 0.2s ease-in-out;
+  word-wrap: break-word; /* Podział długiego tekstu */
+  overflow-wrap: break-word;
+  max-width: 100%;
+  position: relative;
+}
+
+.note-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.column {
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-list {
+  flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column {
+    width: 90%;
+  }
+}
+.delete-note {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.7em;
+}
+.archiv-note {
+  position: absolute;
+  top: 0;
+  right: 5em;
+  font-size: 0.7em;
+}
+
+/* Kontener na zarchiwizowaną tabelę */
+.archived-container {
+  margin-top: 30px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+/* Nagłówek kontenera zarchiwizowanych notatek */
+.archived-container h2 {
+  text-align: center;
+  color: #a47c5b;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+/* Style dla tabeli */
+.archived-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Styl nagłówka tabeli */
+.archived-table thead {
+  background: linear-gradient(135deg, #d4a373, #e7b983);
+  color: #fff;
+}
+
+.archived-table thead th {
+  padding: 12px 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Styl komórek tabeli */
+.archived-table tbody td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Naprzemienne tło w wierszach */
+.archived-table tbody tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+/* Efekt hover na wierszach */
+.archived-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+.delete-note-archiv {
+  position: relative;
+  top: 0;
+  right: 0;
+  font-size: 0.7em;
+}
+
+/* Ukryj pełną treść domyślnie */
+.full-content {
+  display: none; /* Domyślnie ukryty */
+  position: fixed; /* Pozycjonowanie względem okna przeglądarki */
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+.logout-container {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.logout-button {
+  background: linear-gradient(135deg, #d4a373, #e7b983);
+  border: none;
+  padding: 8px 15px;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: linear-gradient(135deg, #c68a5c, #d9a76e);
+  transform: scale(1.05);
+}
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  margin-bottom: 10px; /* Odstęp między kolejnymi polami */
+}
+
+.form-group label {
+  width: 120px;       /* Szerokość etykiety */
+  margin-right: 10px; /* Odstęp między etykietą a polem */
+  font-weight: bold;  /* Pogrubiony tekst etykiety (opcjonalnie) */
+}
+
+.form-group input {
+  flex: 1;            /* Pole zajmie pozostałe miejsce w wierszu */
+  padding: 6px;       /* Ulepszony wygląd pola */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+.flashes {
+  list-style-type: none;
+  margin: 20px 10px 1em 10px;
+  padding: 0;
+}
+
+.error,
+.warning,
+.info {
+  margin: 0 10px;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  margin-bottom: 1px;
+}
+
+.error {
+  background-color: rgb(255, 200, 200);
+}
+
+.warning {
+  background-color: rgb(230, 230, 200);
+}
+
+.info {
+  background-color: rgb(200, 200, 255);
+}

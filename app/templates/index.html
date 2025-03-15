@@ -1,0 +1,88 @@
+<!-- app/templates/index.html -->
+{% extends 'base.html' %} {% block title %} {% endblock title %} 
+{% block top %}
+<div class="logout-container">
+  <a href="{{ url_for('auth.logout') }}" class="logout-button">Logout</a>
+</div>
+{% endblock top %} 
+{% block content %}
+<h1> Willkommen {{ name }}</h1>
+<h2>Fügen Sie Ihre Notizen hinzu:</h2>
+
+<!-- Hinweis zum Hinzufügen eines Formulars -->
+<form id="noteForm">
+  <textarea
+    name="content"
+    id="noteContent"
+    placeholder="Neue Notiz hinzufügen"
+  ></textarea>
+  <button type="submit">Hinzufügen</button>
+</form>
+
+<div class="container">
+  <!-- Neues Feld -->
+  <div class="column">
+    <h2>Neue</h2>
+    <ul id="new_notes" class="note-list">
+      {% for note in notes_new %}
+      <li class="note-item" data-note-id="{{ note.id }}">
+        <button class="delete-note" data-note-id="{{ note.id }}">X</button>
+        <strong>{{ note.created_at.strftime('%Y-%m-%d %H:%M') }}</strong><br />
+        {{ note.content }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Fertiges Feld -->
+  <div class="column">
+    <h2>Fertig</h2>
+    <ul id="done_notes" class="note-list">
+      {% for note in notes_done %}
+      <li class="note-item" data-note-id="{{ note.id }}">
+        <button class="delete-note" data-note-id="{{ note.id }}">X</button>
+        <button class="archiv-note" data-note-id="{{ note.id }}">Archiv</button>
+        <strong>{{ note.created_at.strftime('%Y-%m-%d %H:%M') }}</strong><br />
+        {{ note.content }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- Abschnitt „Archivierte Notizen“ -->
+<div class="archived-container">
+  <h2>Archivierte Notizen</h2>
+  <table class="archived-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Datum</th>
+        <th>Inhalt</th>
+        <th>Löschen</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for note in notes_archived %}
+      <tr>
+        <td>{{ note.id }}</td>
+        <td>{{ note.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+
+        <td>
+            <span class="truncated" title="">{{ note.content[:100] }}{% if note.content|length > 100 %}...{% endif %}</span>
+            <div class="full-content">{{ note.content }}</div>
+          </td>
+          
+          
+
+        <td>
+          <button class="delete-note-archiv" data-note-id="{{ note.id }}">
+            X
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %} {% block footer %} {% endblock footer %}
